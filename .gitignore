@@ -1,0 +1,25 @@
+# ---- OS / editor cruft ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# ---- Editors / IDEs ----
+.vscode/
+.idea/
+
+# ---- Node (only if you later add tooling; none required today) ----
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ---- Env / secrets ----
+.env
+.env.*
+*.local
+
+# ---- Logs / temp ----
+*.log
+tmp/

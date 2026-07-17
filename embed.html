@@ -1,0 +1,673 @@
+<!-- =====================================================================
+     ELENA HART — GoHighLevel EMBED (self-contained, namespaced)
+     ---------------------------------------------------------------------
+     HOW TO USE IN GHL:
+       1. In the funnel/page builder, add a "Custom HTML / JavaScript" element.
+       2. Paste this ENTIRE file into it.
+       3. Replace every #ehc-book anchor with your real Calendly / GHL
+          calendar URL (search this file for: TODO-BOOKING).
+       4. Swap the placeholder Unsplash images + testimonials with real ones.
+
+     SAFE BY DESIGN:
+       • Everything is wrapped in <div class="ehc-root"> and EVERY CSS rule
+         is scoped under .ehc-root, so styles cannot leak into your funnel.
+       • All JS is inside an IIFE and only queries within .ehc-root.
+       • No <html>/<head>/<body> — GHL provides those.
+       • Fonts load via @import (self-contained inside this one block).
+     ===================================================================== -->
+
+<div class="ehc-root" id="ehc-top">
+
+  <style>
+    /* Google Fonts — self-contained import (Fraunces + Inter) */
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+    /* ---- Design tokens scoped to the wrapper (NOT :root, so nothing leaks) ---- */
+    .ehc-root {
+      --ehc-cream: #FAF6F0;
+      --ehc-sand: #F1E9DD;
+      --ehc-sand-2: #E9DECE;
+      --ehc-ink: #2A2521;
+      --ehc-muted: #6E645B;
+      --ehc-clay: #C25E3C;
+      --ehc-clay-600: #A94E2F;
+      --ehc-clay-tint: #F3E0D6;
+      --ehc-line: #E4D8C9;
+      --ehc-white: #FFFFFF;
+      --ehc-font-serif: "Fraunces", Georgia, serif;
+      --ehc-font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --ehc-gutter: clamp(1.25rem, 4vw, 2.5rem);
+      --ehc-section-y: clamp(3.5rem, 8vw, 6.5rem);
+      --ehc-radius: 18px;
+      --ehc-radius-sm: 12px;
+      --ehc-shadow-sm: 0 2px 10px rgba(42,37,33,.05);
+      --ehc-shadow-md: 0 14px 40px rgba(42,37,33,.09);
+      --ehc-shadow-lg: 0 30px 70px rgba(42,37,33,.14);
+      --ehc-ease: cubic-bezier(.22,1,.36,1);
+
+      /* base */
+      font-family: var(--ehc-font-sans);
+      color: var(--ehc-ink);
+      background: var(--ehc-cream);
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow: hidden; /* contain the layout inside the block */
+    }
+
+    /* scoped reset — cannot affect the rest of the funnel */
+    .ehc-root *, .ehc-root *::before, .ehc-root *::after { box-sizing: border-box; }
+    .ehc-root img { max-width: 100%; display: block; height: auto; }
+    .ehc-root h1, .ehc-root h2, .ehc-root h3, .ehc-root h4 {
+      font-family: var(--ehc-font-serif); font-weight: 500; line-height: 1.12;
+      letter-spacing: -.01em; color: var(--ehc-ink); margin: 0 0 .5em;
+    }
+    .ehc-root p { margin: 0 0 1rem; }
+    .ehc-root ul { margin: 0; padding: 0; }
+    .ehc-root li { list-style: none; }
+    .ehc-root a { color: var(--ehc-clay); text-decoration: none; transition: color .2s var(--ehc-ease); }
+    .ehc-root a:hover { color: var(--ehc-clay-600); }
+    .ehc-root :focus-visible { outline: 3px solid var(--ehc-clay); outline-offset: 3px; border-radius: 6px; }
+
+    .ehc-container { width: 100%; max-width: 1140px; margin-inline: auto; padding-inline: var(--ehc-gutter); }
+    .ehc-section { padding-block: var(--ehc-section-y); }
+    .ehc-section--sand { background: var(--ehc-sand); }
+    .ehc-head { max-width: 44rem; margin-bottom: clamp(2rem,4vw,3.25rem); }
+    .ehc-head--center { margin-inline: auto; text-align: center; }
+    .ehc-title { font-size: clamp(1.9rem,1.3rem + 2.6vw,3rem); }
+    .ehc-intro { color: var(--ehc-muted); font-size: 1.125rem; margin-top: .75rem; }
+    .ehc-eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 600; color: var(--ehc-clay); margin: 0 0 .9rem; }
+    .ehc-eyebrow--light { color: rgba(255,255,255,.85); }
+    .ehc-accent { color: var(--ehc-clay); font-style: italic; }
+
+    .ehc-is-fallback { background: linear-gradient(135deg,var(--ehc-sand-2),var(--ehc-clay-tint)); position: relative; }
+    .ehc-is-fallback::after { content: "Photo"; position: absolute; inset: 0; display: grid; place-items: center; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ehc-muted); opacity: .7; }
+
+    /* buttons */
+    .ehc-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-family: var(--ehc-font-sans); font-weight: 600; font-size: 1rem; line-height: 1; padding: .95rem 1.5rem; border-radius: 999px; border: 1.5px solid transparent; background: var(--ehc-clay); color: var(--ehc-white); cursor: pointer; text-align: center; transition: transform .2s var(--ehc-ease), box-shadow .2s var(--ehc-ease), background .2s var(--ehc-ease), color .2s var(--ehc-ease), border-color .2s var(--ehc-ease); }
+    .ehc-btn:hover { transform: translateY(-2px); }
+    .ehc-btn--primary { box-shadow: 0 10px 24px rgba(194,94,60,.28); color: var(--ehc-white); }
+    .ehc-btn--primary:hover { background: var(--ehc-clay-600); color: var(--ehc-white); box-shadow: 0 14px 30px rgba(194,94,60,.34); }
+    .ehc-btn--ghost { background: transparent; color: var(--ehc-ink); border-color: var(--ehc-line); }
+    .ehc-btn--ghost:hover { border-color: var(--ehc-clay); color: var(--ehc-clay); background: var(--ehc-clay-tint); }
+    .ehc-btn--light { background: var(--ehc-cream); color: var(--ehc-ink); box-shadow: var(--ehc-shadow-md); }
+    .ehc-btn--light:hover { background: var(--ehc-white); color: var(--ehc-clay-600); }
+    .ehc-btn--lg { padding: 1.1rem 2rem; font-size: 1.06rem; }
+    .ehc-btn--sm { padding: .7rem 1.15rem; font-size: .92rem; }
+    .ehc-linkcta { display: inline-flex; align-items: center; gap: .5rem; font-weight: 600; margin-top: .5rem; }
+    .ehc-linkcta .ehc-arrow { transition: transform .25s var(--ehc-ease); }
+    .ehc-linkcta:hover .ehc-arrow { transform: translateX(5px); }
+
+    /* nav */
+    .ehc-nav { position: sticky; top: 0; z-index: 50; background: rgba(250,246,240,.85); backdrop-filter: saturate(160%) blur(12px); -webkit-backdrop-filter: saturate(160%) blur(12px); border-bottom: 1px solid transparent; transition: box-shadow .3s var(--ehc-ease), border-color .3s var(--ehc-ease); }
+    .ehc-nav.ehc-scrolled { box-shadow: var(--ehc-shadow-sm); border-bottom-color: var(--ehc-line); }
+    .ehc-nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 68px; }
+    .ehc-brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--ehc-ink); }
+    .ehc-brand:hover { color: var(--ehc-ink); }
+    .ehc-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 9px; background: var(--ehc-clay); color: var(--ehc-white); font-family: var(--ehc-font-serif); font-weight: 600; font-size: .95rem; }
+    .ehc-brand-name { font-family: var(--ehc-font-serif); font-size: 1.2rem; font-weight: 600; }
+    .ehc-nav-links { display: none; gap: 1.6rem; }
+    .ehc-nav-links a { color: var(--ehc-muted); font-weight: 500; font-size: .96rem; position: relative; }
+    .ehc-nav-links a::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px; background: var(--ehc-clay); transition: width .25s var(--ehc-ease); }
+    .ehc-nav-links a:hover { color: var(--ehc-ink); }
+    .ehc-nav-links a:hover::after { width: 100%; }
+    .ehc-nav-cta { display: none; }
+    .ehc-toggle { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 10px; background: transparent; border: 0; cursor: pointer; border-radius: 10px; }
+    .ehc-toggle span { display: block; height: 2px; width: 100%; background: var(--ehc-ink); border-radius: 2px; transition: transform .3s var(--ehc-ease), opacity .2s var(--ehc-ease); }
+    .ehc-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .ehc-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .ehc-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .ehc-mobile { border-top: 1px solid var(--ehc-line); background: var(--ehc-cream); }
+    .ehc-mobile-links { display: flex; flex-direction: column; gap: .35rem; padding: 1rem var(--ehc-gutter) 1.5rem; }
+    .ehc-mobile-links a { color: var(--ehc-ink); font-weight: 500; padding: .7rem 0; font-size: 1.05rem; }
+    .ehc-mobile-links .ehc-btn { margin-top: .6rem; }
+    @media (min-width: 900px) { .ehc-nav-links, .ehc-nav-cta { display: flex; } .ehc-toggle { display: none; } }
+
+    /* hero */
+    .ehc-hero { padding-block: clamp(2.5rem,6vw,5rem) clamp(3rem,7vw,5.5rem); position: relative; }
+    .ehc-hero::before { content: ""; position: absolute; inset: 0; z-index: 0; background: radial-gradient(60% 55% at 80% 8%, var(--ehc-clay-tint), transparent 60%), radial-gradient(50% 50% at 5% 90%, #F6EFE4, transparent 55%); }
+    .ehc-hero > .ehc-container { position: relative; z-index: 1; }
+    .ehc-hero-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem,5vw,4rem); align-items: center; }
+    .ehc-hero-title { font-size: clamp(2.3rem,1.4rem + 4.4vw,4rem); margin-bottom: 1.1rem; }
+    .ehc-hero-sub { font-size: clamp(1.08rem,1rem + .5vw,1.28rem); color: var(--ehc-muted); max-width: 34rem; margin-bottom: 2rem; }
+    .ehc-hero-actions { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+    .ehc-micro { font-size: .92rem; color: var(--ehc-muted); margin: 0; }
+    .ehc-hero-media { position: relative; justify-self: center; width: 100%; max-width: 440px; }
+    .ehc-hero-photo-wrap { border-radius: 210px 210px var(--ehc-radius) var(--ehc-radius); overflow: hidden; box-shadow: var(--ehc-shadow-lg); border: 6px solid var(--ehc-white); aspect-ratio: 9/11; }
+    .ehc-hero-photo { width: 100%; height: 100%; object-fit: cover; }
+    .ehc-hero-badge { position: absolute; left: -.5rem; bottom: 1.5rem; background: var(--ehc-white); border-radius: var(--ehc-radius-sm); box-shadow: var(--ehc-shadow-md); padding: .85rem 1.15rem; display: flex; flex-direction: column; line-height: 1.1; }
+    .ehc-badge-num { font-family: var(--ehc-font-serif); font-size: 1.7rem; color: var(--ehc-clay); font-weight: 600; }
+    .ehc-badge-label { font-size: .8rem; color: var(--ehc-muted); }
+    @media (min-width: 860px) { .ehc-hero-grid { grid-template-columns: 1.05fr .95fr; } .ehc-hero-media { justify-self: end; } }
+
+    /* trust */
+    .ehc-trust { border-block: 1px solid var(--ehc-line); background: var(--ehc-cream); }
+    .ehc-trust-inner { padding-block: 1.75rem; text-align: center; }
+    .ehc-trust-label { text-transform: uppercase; letter-spacing: .14em; font-size: .74rem; font-weight: 600; color: var(--ehc-muted); margin-bottom: .9rem; }
+    .ehc-trust-logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .75rem 1.4rem; font-family: var(--ehc-font-serif); font-size: 1.02rem; color: var(--ehc-ink); opacity: .72; }
+    .ehc-dot { color: var(--ehc-clay); opacity: .6; }
+    @media (max-width: 560px) { .ehc-dot { display: none; } }
+
+    /* promise */
+    .ehc-promise-grid { display: grid; grid-template-columns: 1fr; gap: clamp(1.5rem,4vw,3rem); align-items: start; }
+    .ehc-pains { display: flex; flex-direction: column; gap: 1rem; }
+    .ehc-pains li { position: relative; padding-left: 2.1rem; font-size: 1.1rem; color: var(--ehc-ink); }
+    .ehc-pains li::before { content: ""; position: absolute; left: 0; top: .55em; width: 1.15rem; height: 1.15rem; border-radius: 50%; background: var(--ehc-clay-tint); box-shadow: inset 0 0 0 2px var(--ehc-clay); }
+    .ehc-promise-card { background: var(--ehc-ink); color: var(--ehc-cream); border-radius: var(--ehc-radius); padding: clamp(1.75rem,3vw,2.75rem); box-shadow: var(--ehc-shadow-md); }
+    .ehc-promise-lead { font-family: var(--ehc-font-serif); font-size: 1.4rem; line-height: 1.35; color: var(--ehc-white); }
+    .ehc-promise-body { color: rgba(250,246,240,.82); }
+    .ehc-promise-card .ehc-linkcta { color: #F2B49B; }
+    .ehc-promise-card .ehc-linkcta:hover { color: #fff; }
+    @media (min-width: 820px) { .ehc-promise-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* about */
+    .ehc-about-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem,5vw,4rem); align-items: center; }
+    .ehc-about-photo-wrap { border-radius: var(--ehc-radius); overflow: hidden; box-shadow: var(--ehc-shadow-md); border: 6px solid var(--ehc-white); aspect-ratio: 4/5; max-width: 440px; }
+    .ehc-about-photo { width: 100%; height: 100%; object-fit: cover; }
+    .ehc-about-copy p { color: var(--ehc-muted); font-size: 1.08rem; }
+    .ehc-creds { display: flex; flex-direction: column; gap: .65rem; margin: 1.5rem 0 2rem; padding-top: 1.5rem; border-top: 1px solid var(--ehc-sand-2); }
+    .ehc-creds li { position: relative; padding-left: 1.8rem; color: var(--ehc-muted); }
+    .ehc-creds li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--ehc-clay); font-weight: 700; }
+    .ehc-creds strong { color: var(--ehc-ink); }
+    @media (min-width: 820px) { .ehc-about-grid { grid-template-columns: .9fr 1.1fr; } }
+
+    /* process */
+    .ehc-steps { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    .ehc-step { position: relative; background: var(--ehc-white); border: 1px solid var(--ehc-line); border-radius: var(--ehc-radius); padding: 2rem 1.75rem; box-shadow: var(--ehc-shadow-sm); transition: transform .3s var(--ehc-ease), box-shadow .3s var(--ehc-ease); }
+    .ehc-step:hover { transform: translateY(-4px); box-shadow: var(--ehc-shadow-md); }
+    .ehc-step-num { font-family: var(--ehc-font-serif); font-size: 1rem; color: var(--ehc-clay); font-weight: 600; }
+    .ehc-step-icon { display: grid; place-items: center; width: 54px; height: 54px; margin: .75rem 0 1.1rem; border-radius: 14px; background: var(--ehc-clay-tint); color: var(--ehc-clay-600); }
+    .ehc-step-icon svg { width: 26px; height: 26px; }
+    .ehc-step-title { font-size: 1.4rem; }
+    .ehc-step p { color: var(--ehc-muted); margin: 0; }
+    .ehc-steps-cta { text-align: center; margin-top: clamp(2rem,4vw,3rem); }
+    @media (min-width: 800px) { .ehc-steps { grid-template-columns: repeat(3,1fr); } }
+
+    /* services */
+    .ehc-pkg-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: stretch; }
+    .ehc-pkg { position: relative; display: flex; flex-direction: column; background: var(--ehc-cream); border: 1px solid var(--ehc-line); border-radius: var(--ehc-radius); padding: 2rem 1.75rem; box-shadow: var(--ehc-shadow-sm); transition: transform .3s var(--ehc-ease), box-shadow .3s var(--ehc-ease); }
+    .ehc-pkg:hover { transform: translateY(-5px); box-shadow: var(--ehc-shadow-md); }
+    .ehc-pkg--featured { background: var(--ehc-white); border-color: var(--ehc-clay); box-shadow: var(--ehc-shadow-md); }
+    .ehc-pkg-badge { position: absolute; top: -.85rem; left: 50%; transform: translateX(-50%); background: var(--ehc-clay); color: var(--ehc-white); font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .85rem; border-radius: 999px; white-space: nowrap; }
+    .ehc-pkg-name { font-size: 1.55rem; margin-bottom: .35rem; }
+    .ehc-pkg-price { margin: 0 0 1rem; }
+    .ehc-pkg-amt { font-family: var(--ehc-font-serif); font-size: 1.7rem; color: var(--ehc-clay); font-weight: 600; }
+    .ehc-pkg-unit { color: var(--ehc-muted); font-size: .92rem; }
+    .ehc-pkg-for { color: var(--ehc-muted); font-size: .98rem; padding-bottom: 1.1rem; margin-bottom: 1.1rem; border-bottom: 1px solid var(--ehc-sand-2); }
+    .ehc-pkg-list { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.75rem; }
+    .ehc-pkg-list li { position: relative; padding-left: 1.7rem; color: var(--ehc-ink); }
+    .ehc-pkg-list li::before { content: "✓"; position: absolute; left: 0; color: var(--ehc-clay); font-weight: 700; }
+    .ehc-pkg-cta { margin-top: auto; width: 100%; }
+    .ehc-pkg-note { text-align: center; color: var(--ehc-muted); margin-top: 2rem; font-style: italic; }
+    @media (min-width: 840px) { .ehc-pkg-grid { grid-template-columns: repeat(3,1fr); } .ehc-pkg--featured { transform: scale(1.03); } .ehc-pkg--featured:hover { transform: scale(1.03) translateY(-5px); } }
+
+    /* testimonials */
+    .ehc-quotes { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .ehc-quote { margin: 0; background: var(--ehc-white); border: 1px solid var(--ehc-line); border-radius: var(--ehc-radius); padding: 2rem 1.75rem; box-shadow: var(--ehc-shadow-sm); display: flex; flex-direction: column; gap: 1.5rem; position: relative; }
+    .ehc-quote::before { content: "\201C"; font-family: var(--ehc-font-serif); position: absolute; top: .4rem; right: 1.25rem; font-size: 4.5rem; line-height: 1; color: var(--ehc-clay); opacity: .16; }
+    .ehc-quote blockquote { margin: 0; font-size: 1.1rem; line-height: 1.6; color: var(--ehc-ink); }
+    .ehc-quote-by { display: flex; align-items: center; gap: .85rem; margin-top: auto; }
+    .ehc-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; border: 2px solid var(--ehc-white); box-shadow: var(--ehc-shadow-sm); }
+    .ehc-quote-by strong { display: block; font-family: var(--ehc-font-serif); font-size: 1.05rem; }
+    .ehc-quote-role { font-size: .88rem; color: var(--ehc-muted); }
+    .ehc-quotes-cta { text-align: center; margin-top: clamp(2rem,4vw,3rem); display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+    @media (min-width: 800px) { .ehc-quotes { grid-template-columns: repeat(3,1fr); } }
+
+    /* faq */
+    .ehc-faq-inner { max-width: 46rem; }
+    .ehc-accordion { display: flex; flex-direction: column; gap: .75rem; }
+    .ehc-acc-item { background: var(--ehc-cream); border: 1px solid var(--ehc-line); border-radius: var(--ehc-radius-sm); overflow: hidden; transition: border-color .25s var(--ehc-ease), box-shadow .25s var(--ehc-ease); }
+    .ehc-acc-item h3 { margin: 0; }
+    .ehc-acc-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 1.4rem; background: transparent; border: 0; cursor: pointer; font-family: var(--ehc-font-serif); font-size: 1.12rem; font-weight: 500; color: var(--ehc-ink); text-align: left; line-height: 1.35; }
+    .ehc-acc-trigger:hover { color: var(--ehc-clay-600); }
+    .ehc-acc-trigger[aria-expanded="true"] { color: var(--ehc-clay-600); }
+    .ehc-acc-icon { position: relative; flex: 0 0 auto; width: 20px; height: 20px; }
+    .ehc-acc-icon::before, .ehc-acc-icon::after { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: var(--ehc-clay); border-radius: 2px; }
+    .ehc-acc-icon::before { width: 14px; height: 2px; }
+    .ehc-acc-icon::after { width: 2px; height: 14px; transition: transform .3s var(--ehc-ease); }
+    .ehc-acc-trigger[aria-expanded="true"] .ehc-acc-icon::after { transform: translate(-50%,-50%) scaleY(0); }
+    .ehc-acc-panel { padding: 0 1.4rem 1.3rem; }
+    .ehc-acc-panel p { margin: 0; color: var(--ehc-muted); }
+
+    /* cta band */
+    .ehc-band { background: radial-gradient(70% 120% at 90% 0%, rgba(255,255,255,.10), transparent 60%), linear-gradient(135deg, var(--ehc-clay), var(--ehc-clay-600)); color: var(--ehc-white); text-align: center; padding-block: clamp(3.5rem,7vw,6rem); }
+    .ehc-band-inner { max-width: 42rem; margin-inline: auto; }
+    .ehc-band-title { color: var(--ehc-white); font-size: clamp(1.9rem,1.3rem + 2.8vw,3.1rem); }
+    .ehc-band-sub { color: rgba(255,255,255,.9); font-size: 1.14rem; margin-bottom: 2rem; }
+    .ehc-band-micro { margin-top: 1.25rem; color: rgba(255,255,255,.85); font-size: .95rem; }
+    .ehc-band-micro a { color: var(--ehc-white); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* footer */
+    .ehc-footer { background: var(--ehc-ink); color: rgba(250,246,240,.8); padding-top: clamp(3rem,6vw,4.5rem); }
+    .ehc-footer-inner { display: grid; grid-template-columns: 1fr; gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .ehc-footer .ehc-brand, .ehc-footer .ehc-brand-name { color: var(--ehc-cream); }
+    .ehc-footer-tag { max-width: 24rem; margin-top: .9rem; color: rgba(250,246,240,.65); }
+    .ehc-footer h4 { color: var(--ehc-cream); font-family: var(--ehc-font-sans); font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 1rem; }
+    .ehc-footer-nav, .ehc-footer-contact { display: flex; flex-direction: column; gap: .6rem; align-items: flex-start; }
+    .ehc-footer-nav a, .ehc-footer-contact a { color: rgba(250,246,240,.75); }
+    .ehc-footer-nav a:hover, .ehc-footer-contact a:hover { color: var(--ehc-white); }
+    .ehc-footer-social { display: flex; flex-wrap: wrap; gap: 1rem; margin: .4rem 0 .6rem; }
+    .ehc-footer-bottom { display: flex; flex-direction: column; gap: .5rem; text-align: center; padding-block: 1.5rem; font-size: .88rem; color: rgba(250,246,240,.55); }
+    .ehc-footer-legal a { color: rgba(250,246,240,.7); }
+    @media (min-width: 760px) { .ehc-footer-inner { grid-template-columns: 1.5fr 1fr 1.2fr; } .ehc-footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; } }
+
+    /* scroll reveal (added only when JS runs) */
+    .ehc-root.ehc-js .ehc-reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ehc-ease), transform .7s var(--ehc-ease); }
+    .ehc-root.ehc-js .ehc-reveal.ehc-visible { opacity: 1; transform: none; }
+    .ehc-root.ehc-js .ehc-reveal[data-d="1"] { transition-delay: .1s; }
+    .ehc-root.ehc-js .ehc-reveal[data-d="2"] { transition-delay: .2s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ehc-root * , .ehc-root *::before, .ehc-root *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+      .ehc-root.ehc-js .ehc-reveal { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="ehc-nav" data-ehc-nav>
+    <div class="ehc-container ehc-nav-inner">
+      <a class="ehc-brand" href="#ehc-top" aria-label="Elena Hart — top">
+        <span class="ehc-mark" aria-hidden="true">EH</span>
+        <span class="ehc-brand-name">Elena&nbsp;Hart</span>
+      </a>
+      <nav class="ehc-nav-links" aria-label="Primary">
+        <a href="#ehc-promise">Why coaching</a>
+        <a href="#ehc-about">About</a>
+        <a href="#ehc-process">How it works</a>
+        <a href="#ehc-services">Services</a>
+        <a href="#ehc-testimonials">Results</a>
+        <a href="#ehc-faq">FAQ</a>
+      </nav>
+      <div class="ehc-nav-cta">
+        <!-- TODO-BOOKING: replace #ehc-book with your Calendly / GHL calendar URL -->
+        <a class="ehc-btn ehc-btn--primary ehc-btn--sm" href="#ehc-book">Book a Call</a>
+      </div>
+      <button class="ehc-toggle" type="button" aria-expanded="false" aria-controls="ehc-mobile" aria-label="Open menu" data-ehc-toggle>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="ehc-mobile" id="ehc-mobile" hidden data-ehc-mobile>
+      <nav class="ehc-mobile-links" aria-label="Mobile">
+        <a href="#ehc-promise">Why coaching</a>
+        <a href="#ehc-about">About</a>
+        <a href="#ehc-process">How it works</a>
+        <a href="#ehc-services">Services</a>
+        <a href="#ehc-testimonials">Results</a>
+        <a href="#ehc-faq">FAQ</a>
+        <a class="ehc-btn ehc-btn--primary" href="#ehc-book">Book Your Free Discovery Call</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="ehc-hero" aria-labelledby="ehc-hero-title">
+    <div class="ehc-container ehc-hero-grid">
+      <div class="ehc-hero-copy ehc-reveal">
+        <p class="ehc-eyebrow">Life &amp; Mindset Coaching</p>
+        <h1 class="ehc-hero-title" id="ehc-hero-title">Get unstuck and build a life that <span class="ehc-accent">finally feels like yours.</span></h1>
+        <p class="ehc-hero-sub">I help thoughtful, driven people quiet the self-doubt, find real clarity, and take the next confident step — starting with one honest conversation.</p>
+        <div class="ehc-hero-actions">
+          <!-- TODO-BOOKING -->
+          <a class="ehc-btn ehc-btn--primary ehc-btn--lg" href="#ehc-book">Book Your Free Discovery Call</a>
+          <p class="ehc-micro">Free 30-minute call · No pressure, no pitch — just clarity.</p>
+        </div>
+      </div>
+      <div class="ehc-hero-media ehc-reveal" data-d="1">
+        <div class="ehc-hero-photo-wrap">
+          <!-- TODO: replace with a real headshot of the coach -->
+          <img class="ehc-hero-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80" alt="Elena Hart, life and mindset coach, smiling warmly" width="900" height="1100" loading="eager" onerror="this.onerror=null;this.classList.add('ehc-is-fallback');this.removeAttribute('src');" />
+        </div>
+        <div class="ehc-hero-badge" aria-hidden="true">
+          <span class="ehc-badge-num">200+</span>
+          <span class="ehc-badge-label">lives changed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRUST ===================== -->
+  <section class="ehc-trust" aria-label="Credentials and recognition">
+    <div class="ehc-container ehc-trust-inner ehc-reveal">
+      <p class="ehc-trust-label">Certified, and trusted by people just like you</p>
+      <ul class="ehc-trust-logos">
+        <!-- TODO: replace with real credential / press logos -->
+        <li>ICF Certified</li>
+        <li aria-hidden="true" class="ehc-dot">•</li>
+        <li>Forbes Coaches Council</li>
+        <li aria-hidden="true" class="ehc-dot">•</li>
+        <li>Mindful&nbsp;Magazine</li>
+        <li aria-hidden="true" class="ehc-dot">•</li>
+        <li>200+ clients coached</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== PROMISE ===================== -->
+  <section class="ehc-section" id="ehc-promise" aria-labelledby="ehc-promise-title">
+    <div class="ehc-container">
+      <div class="ehc-head ehc-reveal">
+        <p class="ehc-eyebrow">Sound familiar?</p>
+        <h2 class="ehc-title" id="ehc-promise-title">You look fine on paper — but something quietly feels off.</h2>
+      </div>
+      <div class="ehc-promise-grid">
+        <ul class="ehc-pains ehc-reveal">
+          <li>You're successful by every outside measure, yet you feel stuck, restless, or numb.</li>
+          <li>You keep waiting to feel "ready," and the second-guessing never quite stops.</li>
+          <li>You know something needs to change — you just can't see the next step clearly.</li>
+          <li>You're tired of overthinking your life instead of actually living it.</li>
+        </ul>
+        <div class="ehc-promise-card ehc-reveal" data-d="1">
+          <p class="ehc-eyebrow ehc-eyebrow--light">Here's the shift</p>
+          <p class="ehc-promise-lead">Imagine waking up clear on what you want, trusting your own decisions, and moving toward a life that actually fits <em>you</em> — not the one you think you're supposed to want.</p>
+          <p class="ehc-promise-body">That's the work we do together: cut through the noise, rebuild your confidence from the inside out, and turn "someday" into a plan you start this week.</p>
+          <!-- TODO-BOOKING -->
+          <a class="ehc-linkcta" href="#ehc-book">Book your free discovery call <span class="ehc-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="ehc-section ehc-section--sand" id="ehc-about" aria-labelledby="ehc-about-title">
+    <div class="ehc-container ehc-about-grid">
+      <div class="ehc-about-media ehc-reveal">
+        <div class="ehc-about-photo-wrap">
+          <!-- TODO: replace with a real candid headshot -->
+          <img class="ehc-about-photo" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80" alt="Portrait of Elena Hart in a warm, relaxed setting" width="800" height="900" loading="lazy" onerror="this.onerror=null;this.classList.add('ehc-is-fallback');this.removeAttribute('src');" />
+        </div>
+      </div>
+      <div class="ehc-about-copy ehc-reveal" data-d="1">
+        <p class="ehc-eyebrow">Hi, I'm Elena</p>
+        <h2 class="ehc-title" id="ehc-about-title">I've been where you are — and I found the way through.</h2>
+        <p>A few years ago I had the "right" life on paper and still felt lost. What changed everything wasn't more hustle — it was getting honest, getting support, and finally learning to trust myself. Now I help others do the same.</p>
+        <p>My approach is warm but direct. No fluffy affirmations, no one-size-fits-all programs — just real conversations, practical tools, and a plan that fits your actual life. You bring the willingness; I'll help you find the clarity.</p>
+        <ul class="ehc-creds">
+          <li><strong>ICF-Certified Coach</strong> — 500+ coaching hours</li>
+          <li><strong>Certified in Positive Psychology</strong> &amp; CBT-informed methods</li>
+          <li><strong>200+ clients</strong> across careers, relationships &amp; life transitions</li>
+        </ul>
+        <a class="ehc-btn ehc-btn--primary" href="#ehc-book">Let's talk — book a free call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROCESS ===================== -->
+  <section class="ehc-section" id="ehc-process" aria-labelledby="ehc-process-title">
+    <div class="ehc-container">
+      <div class="ehc-head ehc-head--center ehc-reveal">
+        <p class="ehc-eyebrow">Simple by design</p>
+        <h2 class="ehc-title" id="ehc-process-title">How it works</h2>
+        <p class="ehc-intro">Three low-pressure steps from stuck to moving forward.</p>
+      </div>
+      <ol class="ehc-steps">
+        <li class="ehc-step ehc-reveal">
+          <span class="ehc-step-num" aria-hidden="true">01</span>
+          <span class="ehc-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/></svg></span>
+          <h3 class="ehc-step-title">Book your free call</h3>
+          <p>We spend 30 honest minutes on where you are, where you want to be, and what's in the way. No pressure, no pitch.</p>
+        </li>
+        <li class="ehc-step ehc-reveal" data-d="1">
+          <span class="ehc-step-num" aria-hidden="true">02</span>
+          <span class="ehc-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg></span>
+          <h3 class="ehc-step-title">Build your plan</h3>
+          <p>Together we design a clear, doable roadmap — tailored to your goals, your pace, and the life you're actually trying to build.</p>
+        </li>
+        <li class="ehc-step ehc-reveal" data-d="2">
+          <span class="ehc-step-num" aria-hidden="true">03</span>
+          <span class="ehc-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M5 8l2 2M19 8l-2 2M3 18h18M6 18a6 6 0 0 1 12 0"/></svg></span>
+          <h3 class="ehc-step-title">Transform your life</h3>
+          <p>With steady support and accountability, you take real steps — and start living like the person you've been waiting to become.</p>
+        </li>
+      </ol>
+      <div class="ehc-steps-cta ehc-reveal">
+        <!-- TODO-BOOKING -->
+        <a class="ehc-btn ehc-btn--primary ehc-btn--lg" href="#ehc-book">Book Your Free Discovery Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section class="ehc-section ehc-section--sand" id="ehc-services" aria-labelledby="ehc-services-title">
+    <div class="ehc-container">
+      <div class="ehc-head ehc-head--center ehc-reveal">
+        <p class="ehc-eyebrow">Ways to work together</p>
+        <h2 class="ehc-title" id="ehc-services-title">Coaching built around your goals</h2>
+        <p class="ehc-intro">Every path starts with the same free discovery call, so we can find your best fit together.</p>
+      </div>
+      <div class="ehc-pkg-grid">
+        <article class="ehc-pkg ehc-reveal">
+          <header><h3 class="ehc-pkg-name">Clarity Session</h3>
+            <p class="ehc-pkg-price"><span class="ehc-pkg-amt">$197</span> <span class="ehc-pkg-unit">single session</span></p></header>
+          <p class="ehc-pkg-for">Best when you're facing one big decision and need to think clearly, fast.</p>
+          <ul class="ehc-pkg-list">
+            <li>90-minute deep-dive intensive</li>
+            <li>Clear next steps you leave with</li>
+            <li>Personalized action summary</li>
+            <li>One week of follow-up support</li>
+          </ul>
+          <a class="ehc-btn ehc-btn--ghost ehc-pkg-cta" href="#ehc-book">Book a Call</a>
+        </article>
+        <article class="ehc-pkg ehc-pkg--featured ehc-reveal" data-d="1">
+          <span class="ehc-pkg-badge">Most popular</span>
+          <header><h3 class="ehc-pkg-name">The Reset</h3>
+            <p class="ehc-pkg-price"><span class="ehc-pkg-amt">$897</span> <span class="ehc-pkg-unit">3-month program</span></p></header>
+          <p class="ehc-pkg-for">Best when you're ready for real, lasting change with steady support.</p>
+          <ul class="ehc-pkg-list">
+            <li>Bi-weekly 1:1 coaching sessions</li>
+            <li>A personalized transformation roadmap</li>
+            <li>Voice &amp; message support between sessions</li>
+            <li>Tools, prompts &amp; accountability</li>
+          </ul>
+          <a class="ehc-btn ehc-btn--primary ehc-pkg-cta" href="#ehc-book">Book a Call</a>
+        </article>
+        <article class="ehc-pkg ehc-reveal" data-d="2">
+          <header><h3 class="ehc-pkg-name">Full Transformation</h3>
+            <p class="ehc-pkg-price"><span class="ehc-pkg-amt">$1,650</span> <span class="ehc-pkg-unit">6-month journey</span></p></header>
+          <p class="ehc-pkg-for">Best when you're navigating a big life transition and want a partner for the whole way.</p>
+          <ul class="ehc-pkg-list">
+            <li>Weekly 1:1 coaching sessions</li>
+            <li>Deep work on confidence &amp; purpose</li>
+            <li>Priority support &amp; check-ins</li>
+            <li>Lifetime access to your resources</li>
+          </ul>
+          <a class="ehc-btn ehc-btn--ghost ehc-pkg-cta" href="#ehc-book">Book a Call</a>
+        </article>
+      </div>
+      <p class="ehc-pkg-note ehc-reveal">Not sure which fits? That's exactly what the free call is for.</p>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS =====================
+       ⚠️ PLACEHOLDER testimonials — illustrative, NOT real clients.
+       Replace with genuine, permission-granted quotes before launch. -->
+  <section class="ehc-section" id="ehc-testimonials" aria-labelledby="ehc-testimonials-title">
+    <div class="ehc-container">
+      <div class="ehc-head ehc-head--center ehc-reveal">
+        <p class="ehc-eyebrow">Real results</p>
+        <h2 class="ehc-title" id="ehc-testimonials-title">What changes when you stop doing it alone</h2>
+      </div>
+      <div class="ehc-quotes">
+        <figure class="ehc-quote ehc-reveal">
+          <blockquote>"I came in overwhelmed and left with an actual plan. Within three months I finally left the job that was draining me — and started the business I'd talked about for years."</blockquote>
+          <figcaption class="ehc-quote-by">
+            <img class="ehc-avatar" width="56" height="56" loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=112&q=80" alt="Portrait of Jordan M." onerror="this.onerror=null;this.classList.add('ehc-is-fallback');this.removeAttribute('src');" />
+            <span><strong>Jordan M.</strong><span class="ehc-quote-role">Marketing Director → Founder</span></span>
+          </figcaption>
+        </figure>
+        <figure class="ehc-quote ehc-reveal" data-d="1">
+          <blockquote>"Elena helped me quiet the constant self-doubt. For the first time in years I trust my own decisions — and my relationships have completely changed because of it."</blockquote>
+          <figcaption class="ehc-quote-by">
+            <img class="ehc-avatar" width="56" height="56" loading="lazy" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=112&q=80" alt="Portrait of Priya S." onerror="this.onerror=null;this.classList.add('ehc-is-fallback');this.removeAttribute('src');" />
+            <span><strong>Priya S.</strong><span class="ehc-quote-role">Teacher &amp; new mom</span></span>
+          </figcaption>
+        </figure>
+        <figure class="ehc-quote ehc-reveal" data-d="2">
+          <blockquote>"I was 'fine' but stuck for years. Six months in, I moved cities, restarted dating, and feel genuinely excited about my life again. Best money I've ever spent on myself."</blockquote>
+          <figcaption class="ehc-quote-by">
+            <img class="ehc-avatar" width="56" height="56" loading="lazy" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=112&q=80" alt="Portrait of Daniel R." onerror="this.onerror=null;this.classList.add('ehc-is-fallback');this.removeAttribute('src');" />
+            <span><strong>Daniel R.</strong><span class="ehc-quote-role">Software Engineer</span></span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="ehc-quotes-cta ehc-reveal">
+        <!-- TODO-BOOKING -->
+        <a class="ehc-btn ehc-btn--primary ehc-btn--lg" href="#ehc-book">Book Your Free Discovery Call</a>
+        <p class="ehc-micro">Your story could be the next one here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="ehc-section ehc-section--sand" id="ehc-faq" aria-labelledby="ehc-faq-title">
+    <div class="ehc-container ehc-faq-inner">
+      <div class="ehc-head ehc-head--center ehc-reveal">
+        <p class="ehc-eyebrow">Before you book</p>
+        <h2 class="ehc-title" id="ehc-faq-title">Questions people ask me</h2>
+      </div>
+      <div class="ehc-accordion" data-ehc-accordion>
+        <div class="ehc-acc-item">
+          <h3><button class="ehc-acc-trigger" type="button" aria-expanded="false" aria-controls="ehc-faq1" id="ehc-faq1-btn"><span>Is the discovery call really free — and is it a sales pitch?</span><span class="ehc-acc-icon" aria-hidden="true"></span></button></h3>
+          <div class="ehc-acc-panel" id="ehc-faq1" role="region" aria-labelledby="ehc-faq1-btn" hidden><p>Yes, genuinely free — 30 minutes, no cost, no obligation. It's a real conversation about you. If coaching is a fit, I'll tell you; if it's not, I'll point you somewhere better. No hard sell, ever.</p></div>
+        </div>
+        <div class="ehc-acc-item">
+          <h3><button class="ehc-acc-trigger" type="button" aria-expanded="false" aria-controls="ehc-faq2" id="ehc-faq2-btn"><span>I'm not in crisis — is coaching even for me?</span><span class="ehc-acc-icon" aria-hidden="true"></span></button></h3>
+          <div class="ehc-acc-panel" id="ehc-faq2" role="region" aria-labelledby="ehc-faq2-btn" hidden><p>Absolutely. Most of my clients are doing "fine" — they're just ready for more clarity, confidence, or direction. Coaching is for growth, not just crisis. You don't have to be broken to want better.</p></div>
+        </div>
+        <div class="ehc-acc-item">
+          <h3><button class="ehc-acc-trigger" type="button" aria-expanded="false" aria-controls="ehc-faq3" id="ehc-faq3-btn"><span>How is coaching different from therapy?</span><span class="ehc-acc-icon" aria-hidden="true"></span></button></h3>
+          <div class="ehc-acc-panel" id="ehc-faq3" role="region" aria-labelledby="ehc-faq3-btn" hidden><p>Therapy often focuses on healing the past; coaching focuses on building your future. We work forward — clarity, goals, habits, and action. The two can complement each other beautifully, and I'm happy to talk through what you need.</p></div>
+        </div>
+        <div class="ehc-acc-item">
+          <h3><button class="ehc-acc-trigger" type="button" aria-expanded="false" aria-controls="ehc-faq4" id="ehc-faq4-btn"><span>How much time will this take?</span><span class="ehc-acc-icon" aria-hidden="true"></span></button></h3>
+          <div class="ehc-acc-panel" id="ehc-faq4" role="region" aria-labelledby="ehc-faq4-btn" hidden><p>Sessions run 45–90 minutes, weekly or bi-weekly depending on your package. Between sessions, the "homework" is light and practical — small shifts that fit a real, busy life. This is designed to give you time back, not take it.</p></div>
+        </div>
+        <div class="ehc-acc-item">
+          <h3><button class="ehc-acc-trigger" type="button" aria-expanded="false" aria-controls="ehc-faq5" id="ehc-faq5-btn"><span>What if I've tried coaching before and it didn't stick?</span><span class="ehc-acc-icon" aria-hidden="true"></span></button></h3>
+          <div class="ehc-acc-panel" id="ehc-faq5" role="region" aria-labelledby="ehc-faq5-btn" hidden><p>Totally understandable — generic advice rarely sticks. This is different because it's built entirely around <em>you</em>: your goals, your obstacles, your pace, with real accountability so you actually follow through. That's usually the missing piece.</p></div>
+        </div>
+        <div class="ehc-acc-item">
+          <h3><button class="ehc-acc-trigger" type="button" aria-expanded="false" aria-controls="ehc-faq6" id="ehc-faq6-btn"><span>Do we meet online or in person?</span><span class="ehc-acc-icon" aria-hidden="true"></span></button></h3>
+          <div class="ehc-acc-panel" id="ehc-faq6" role="region" aria-labelledby="ehc-faq6-btn" hidden><p>All coaching happens online over video, so we can work together wherever you are. All you need is a quiet spot and a solid connection.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="ehc-band" id="ehc-book" aria-labelledby="ehc-band-title">
+    <div class="ehc-container ehc-band-inner ehc-reveal">
+      <p class="ehc-eyebrow ehc-eyebrow--light">Your next chapter starts with a conversation</p>
+      <h2 class="ehc-band-title" id="ehc-band-title">Ready to build a life that finally feels like yours?</h2>
+      <p class="ehc-band-sub">Book your free 30-minute discovery call. No pressure, no pitch — just a real conversation about what's possible for you.</p>
+      <!-- TODO-BOOKING: point this at your scheduler, OR drop your GHL calendar <iframe> right below it. -->
+      <a class="ehc-btn ehc-btn--light ehc-btn--lg" href="#ehc-book">Book Your Free Discovery Call</a>
+      <p class="ehc-band-micro">Prefer email? <a href="mailto:hello@elenahart.co">hello@elenahart.co</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="ehc-footer">
+    <div class="ehc-container ehc-footer-inner">
+      <div class="ehc-footer-brand">
+        <a class="ehc-brand" href="#ehc-top" aria-label="Elena Hart — top">
+          <span class="ehc-mark" aria-hidden="true">EH</span>
+          <span class="ehc-brand-name">Elena&nbsp;Hart</span>
+        </a>
+        <p class="ehc-footer-tag">Life &amp; mindset coaching to help you get unstuck and build a life that feels like yours.</p>
+      </div>
+      <nav class="ehc-footer-nav" aria-label="Footer">
+        <h4>Explore</h4>
+        <a href="#ehc-about">About</a>
+        <a href="#ehc-process">How it works</a>
+        <a href="#ehc-services">Services</a>
+        <a href="#ehc-faq">FAQ</a>
+      </nav>
+      <div class="ehc-footer-contact">
+        <h4>Get in touch</h4>
+        <a href="mailto:hello@elenahart.co">hello@elenahart.co</a>
+        <ul class="ehc-footer-social" aria-label="Social links">
+          <!-- TODO: replace # with real social URLs -->
+          <li><a href="#" aria-label="Instagram">Instagram</a></li>
+          <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+          <li><a href="#" aria-label="YouTube">YouTube</a></li>
+        </ul>
+        <a class="ehc-btn ehc-btn--primary ehc-btn--sm" href="#ehc-book">Book a Call</a>
+      </div>
+    </div>
+    <div class="ehc-container ehc-footer-bottom">
+      <p>&copy; <span data-ehc-year>2026</span> Elena Hart Coaching. All rights reserved.</p>
+      <p class="ehc-footer-legal"><a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </div>
+  </footer>
+
+  <script>
+    /* Scoped to .ehc-root — will not collide with GHL's own scripts. */
+    (function () {
+      "use strict";
+      var root = document.getElementById("ehc-top");
+      if (!root) return;
+      root.classList.add("ehc-js");
+
+      var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* sticky nav shadow */
+      var nav = root.querySelector("[data-ehc-nav]");
+      function onScroll() { if (nav) nav.classList.toggle("ehc-scrolled", window.scrollY > 8); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      /* mobile menu */
+      var toggle = root.querySelector("[data-ehc-toggle]");
+      var menu = root.querySelector("[data-ehc-mobile]");
+      function closeMenu() { if (toggle && menu) { toggle.setAttribute("aria-expanded","false"); toggle.setAttribute("aria-label","Open menu"); menu.hidden = true; } }
+      function openMenu() { if (toggle && menu) { toggle.setAttribute("aria-expanded","true"); toggle.setAttribute("aria-label","Close menu"); menu.hidden = false; } }
+      if (toggle && menu) {
+        toggle.addEventListener("click", function () { toggle.getAttribute("aria-expanded") === "true" ? closeMenu() : openMenu(); });
+        menu.addEventListener("click", function (e) { if (e.target.closest("a")) closeMenu(); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+        window.addEventListener("resize", function () { if (window.innerWidth >= 900) closeMenu(); });
+      }
+
+      /* scroll reveal */
+      var revealEls = root.querySelectorAll(".ehc-reveal");
+      if (!("IntersectionObserver" in window) || prefersReduced) {
+        revealEls.forEach(function (el) { el.classList.add("ehc-visible"); });
+      } else {
+        var io = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("ehc-visible"); obs.unobserve(entry.target); } });
+        }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+        revealEls.forEach(function (el) { io.observe(el); });
+      }
+
+      /* accordion */
+      var accordion = root.querySelector("[data-ehc-accordion]");
+      if (accordion) {
+        accordion.querySelectorAll(".ehc-acc-trigger").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var expanded = btn.getAttribute("aria-expanded") === "true";
+            var panel = document.getElementById(btn.getAttribute("aria-controls"));
+            btn.setAttribute("aria-expanded", String(!expanded));
+            if (panel) panel.hidden = expanded;
+          });
+        });
+      }
+
+      /* in-page smooth scroll (scoped to embed anchors only) */
+      root.querySelectorAll('a[href^="#ehc-"]').forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          var id = link.getAttribute("href");
+          var target = root.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+        });
+      });
+
+      /* year */
+      var yearEl = root.querySelector("[data-ehc-year]");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+    })();
+  </script>
+</div>
+<!-- ===== END ELENA HART EMBED ===== -->
