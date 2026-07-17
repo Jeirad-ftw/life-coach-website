@@ -8,9 +8,9 @@
   <!-- SEO / SOCIAL META                                             -->
   <!-- TODO: replace elenahart.co with your real domain everywhere   -->
   <!-- ============================================================= -->
-  <title>Elena Hart | Life & Mindset Coach — Book a Free Discovery Call</title>
+  <title>Elena Hart | Life &amp; Mindset Coach — Book a Free Discovery Call</title>
   <meta name="description" content="Life & mindset coaching for thoughtful, driven people who feel stuck. Find clarity, quiet the self-doubt, and build a life that feels like yours. Book your free discovery call." />
-  <meta name="theme-color" content="#C25E3C" />
+  <meta name="theme-color" content="#060644" />
   <link rel="canonical" href="https://elenahart.co/" />
 
   <!-- Open Graph -->
@@ -27,19 +27,18 @@
   <meta name="twitter:title" content="Elena Hart | Life & Mindset Coach" />
   <meta name="twitter:description" content="Get unstuck and build a life that finally feels like yours. Book your free discovery call." />
 
-  <!-- Favicon: inline SVG "EH" monogram placeholder. TODO: swap for a real favicon.ico -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23C25E3C'/%3E%3Ctext x='50%25' y='55%25' font-family='Georgia,serif' font-size='16' fill='%23FAF6F0' text-anchor='middle' dominant-baseline='middle'%3EE%3C/text%3E%3C/svg%3E" />
+  <!-- Favicon: inline SVG "E" monogram placeholder. TODO: swap for a real favicon.ico -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23060644'/%3E%3Ctext x='50%25' y='56%25' font-family='Georgia,serif' font-size='17' fill='%23BC9C22' text-anchor='middle' dominant-baseline='middle'%3EE%3C/text%3E%3C/svg%3E" />
 
-  <!-- Fonts: Google Fonts (Fraunces = elegant serif headings, Inter = clean sans body) -->
+  <!-- Fonts: Parisienne (script accents) · Noto Serif Display (headlines) · Montserrat (body/labels) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Parisienne&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 
   <!-- ============================================================= -->
   <!-- JSON-LD structured data (Person + ProfessionalService)        -->
-  <!-- TODO: update name, url, sameAs socials, email, area served    -->
   <!-- ============================================================= -->
   <script type="application/ld+json">
   {
@@ -53,11 +52,7 @@
         "url": "https://elenahart.co/",
         "email": "hello@elenahart.co",
         "description": "Life & mindset coach helping thoughtful, driven people find clarity, confidence, and purpose.",
-        "sameAs": [
-          "https://instagram.com/",
-          "https://linkedin.com/",
-          "https://youtube.com/"
-        ]
+        "sameAs": ["https://instagram.com/", "https://linkedin.com/", "https://youtube.com/"]
       },
       {
         "@type": "ProfessionalService",
@@ -77,17 +72,25 @@
 </head>
 
 <body>
-  <!-- Accessibility: skip straight to content for keyboard/screen-reader users -->
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================= -->
+  <!-- TOP ANNOUNCEMENT BAR                                           -->
+  <!-- ============================================================= -->
+  <!-- TODO: replace #book with your Calendly / GHL calendar URL -->
+  <a class="topbar" href="#book">
+    Free 30-minute discovery call · no pressure, no pitch
+    <span class="topbar__link">Book yours&nbsp;→</span>
+  </a>
 
   <!-- ============================================================= -->
   <!-- STICKY NAV                                                    -->
   <!-- ============================================================= -->
   <header class="nav" id="nav" data-nav>
     <div class="container nav__inner">
-      <a class="nav__brand" href="#top" aria-label="Elena Hart — home">
-        <span class="nav__mark" aria-hidden="true">EH</span>
-        <span class="nav__name">Elena&nbsp;Hart</span>
+      <a class="brand" href="#top" aria-label="Elena Hart — home">
+        <span class="brand__name">Elena Hart</span>
+        <span class="brand__tag">Life &amp; Mindset Coach</span>
       </a>
 
       <nav class="nav__links" aria-label="Primary">
@@ -99,9 +102,15 @@
         <a href="#faq">FAQ</a>
       </nav>
 
-      <div class="nav__cta">
+      <div class="nav__right">
+        <ul class="nav__social" aria-label="Social links">
+          <!-- TODO: replace # with your real social URLs -->
+          <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></li>
+          <li><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.6v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9V9Z"/></svg></a></li>
+          <li><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a></li>
+        </ul>
         <!-- TODO: replace #book with your Calendly / GHL calendar URL -->
-        <a class="btn btn--primary btn--sm" href="#book">Book a Call</a>
+        <a class="btn btn--gold btn--sm nav__cta" href="#book">Book a Call</a>
       </div>
 
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu" data-nav-toggle>
@@ -109,7 +118,6 @@
       </button>
     </div>
 
-    <!-- Mobile dropdown menu -->
     <div class="nav__mobile" id="mobileMenu" hidden data-mobile-menu>
       <nav class="nav__mobile-links" aria-label="Mobile">
         <a href="#promise">Why coaching</a>
@@ -118,7 +126,7 @@
         <a href="#services">Services</a>
         <a href="#testimonials">Results</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn--primary" href="#book">Book Your Free Discovery Call</a>
+        <a class="btn btn--gold" href="#book">Book Your Free Discovery Call</a>
       </nav>
     </div>
   </header>
@@ -127,14 +135,26 @@
     <span id="top"></span>
 
     <!-- ============================================================= -->
-    <!-- HERO — one job: book the call                                 -->
+    <!-- HERO                                                          -->
     <!-- ============================================================= -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero__grid">
-        <div class="hero__copy reveal">
-          <p class="eyebrow">Life &amp; Mindset Coaching</p>
+        <div class="hero__media reveal">
+          <div class="hero__frame">
+            <!-- TODO: replace with a real, warm headshot of the coach (approx 900x1100) -->
+            <img class="hero__photo"
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80"
+              alt="Elena Hart, life and mindset coach, smiling warmly"
+              width="900" height="1100" loading="eager" fetchpriority="high"
+              onerror="this.onerror=null;this.classList.add('is-fallback');this.removeAttribute('src');" />
+          </div>
+        </div>
+
+        <div class="hero__copy reveal" data-reveal-delay="1">
+          <p class="script-accent hero__script">Life &amp; mindset coaching</p>
           <h1 class="hero__title" id="hero-title">
-            Get unstuck and build a life that <span class="accent-text">finally feels like yours.</span>
+            Get unstuck and build a life that
+            <span class="script-accent script-accent--xl">finally feels like yours.</span>
           </h1>
           <p class="hero__sub">
             I help thoughtful, driven people quiet the self-doubt, find real clarity,
@@ -142,45 +162,38 @@
           </p>
           <div class="hero__actions">
             <!-- TODO: replace #book with your Calendly / GHL calendar URL -->
-            <a class="btn btn--primary btn--lg" href="#book">Book Your Free Discovery Call</a>
-            <p class="hero__micro">Free 30-minute call · No pressure, no pitch — just clarity.</p>
+            <a class="btn btn--gold btn--stack" href="#book">
+              <span class="btn__main">Book Your Free Discovery Call</span>
+              <span class="btn__sub">30 min · no pressure, no pitch</span>
+            </a>
+            <a class="btn btn--outline btn--stack" href="#process">
+              <span class="btn__main">New here?</span>
+              <span class="btn__sub">See how it works</span>
+            </a>
           </div>
-        </div>
-
-        <div class="hero__media reveal" data-reveal-delay="1">
-          <div class="hero__photo-wrap">
-            <!-- TODO: replace with a real, warm headshot of the coach (approx 900x1100) -->
-            <img
-              class="hero__photo"
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80"
-              alt="Elena Hart, life and mindset coach, smiling warmly"
-              width="900" height="1100" loading="eager" fetchpriority="high"
-              onerror="this.onerror=null;this.classList.add('is-fallback');this.removeAttribute('src');" />
-          </div>
-          <!-- Floating credibility chip -->
-          <div class="hero__badge" aria-hidden="true">
-            <span class="hero__badge-num">200+</span>
-            <span class="hero__badge-label">lives changed</span>
-          </div>
+          <p class="hero__micro">Free 30-minute call · one honest conversation about you.</p>
         </div>
       </div>
     </section>
 
     <!-- ============================================================= -->
-    <!-- TRUST BAR                                                     -->
-    <!-- NOTE: placeholder credentials/logos — swap for real ones.     -->
+    <!-- NAVY STATEMENT BAND (+ credential row)                         -->
+    <!-- NOTE: placeholder credentials — swap for real ones.           -->
     <!-- ============================================================= -->
-    <section class="trust" aria-label="Credentials and recognition">
-      <div class="container trust__inner reveal">
-        <p class="trust__label">Certified, and trusted by people just like you</p>
-        <ul class="trust__logos">
-          <!-- TODO: replace text wordmarks with real credential / press logos -->
+    <section class="band" aria-label="Brand statement and credentials">
+      <div class="container band__inner reveal">
+        <p class="band__statement">
+          Get unstuck and build a life
+          <span class="script-accent script-accent--gold script-accent--xl">that feels like yours.</span>
+        </p>
+        <ul class="band__creds">
+          <!-- TODO: replace with real credential / press logos -->
           <li>ICF Certified</li>
-          <li aria-hidden="true" class="trust__dot">•</li>
+          <li aria-hidden="true" class="band__dot">✦</li>
           <li>Forbes Coaches Council</li>
-          <li aria-hidden="true" class="trust__dot">•</li>
-          <li>Mindful&nbsp;Magazine</li>
-          <li aria-hidden="true" class="trust__dot">•</li>
+          <li aria-hidden="true" class="band__dot">✦</li>
+          <li>Mindful Magazine</li>
+          <li aria-hidden="true" class="band__dot">✦</li>
           <li>200+ clients coached</li>
         </ul>
       </div>
@@ -189,10 +202,10 @@
     <!-- ============================================================= -->
     <!-- PAIN → PROMISE                                                 -->
     <!-- ============================================================= -->
-    <section class="promise section" id="promise" aria-labelledby="promise-title">
+    <section class="section promise" id="promise" aria-labelledby="promise-title">
       <div class="container">
         <div class="section__head reveal">
-          <p class="eyebrow">Sound familiar?</p>
+          <p class="script-accent">Sound familiar?</p>
           <h2 class="section__title" id="promise-title">
             You look fine on paper — but something quietly feels off.
           </h2>
@@ -207,7 +220,7 @@
           </ul>
 
           <div class="promise__card reveal" data-reveal-delay="1">
-            <p class="eyebrow eyebrow--light">Here's the shift</p>
+            <p class="script-accent script-accent--gold">Here's the shift</p>
             <p class="promise__lead">
               Imagine waking up clear on what you want, trusting your own decisions,
               and moving toward a life that actually fits <em>you</em> — not the one
@@ -218,7 +231,6 @@
               confidence from the inside out, and turn "someday" into a plan you
               start this week.
             </p>
-            <!-- TODO: replace #book with your Calendly / GHL calendar URL -->
             <a class="link-cta" href="#book">Book your free discovery call
               <span class="link-cta__arrow" aria-hidden="true">→</span>
             </a>
@@ -228,15 +240,14 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- ABOUT THE COACH (warm, first-person)                          -->
+    <!-- ABOUT THE COACH                                                -->
     <!-- ============================================================= -->
-    <section class="about section section--sand" id="about" aria-labelledby="about-title">
+    <section class="section section--blush about" id="about" aria-labelledby="about-title">
       <div class="container about__grid">
         <div class="about__media reveal">
-          <div class="about__photo-wrap">
+          <div class="about__frame">
             <!-- TODO: replace with a real, candid headshot of the coach (approx 800x900) -->
-            <img
-              class="about__photo"
+            <img class="about__photo"
               src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80"
               alt="Portrait of Elena Hart in a warm, relaxed setting"
               width="800" height="900" loading="lazy"
@@ -245,8 +256,9 @@
         </div>
 
         <div class="about__copy reveal" data-reveal-delay="1">
-          <p class="eyebrow">Hi, I'm Elena</p>
-          <h2 class="section__title" id="about-title">
+          <p class="eyebrow">Meet your coach</p>
+          <p class="script-accent script-accent--gold script-accent--xl about__hi">Hi, I'm Elena</p>
+          <h2 class="section__title about__title" id="about-title">
             I've been where you are — and I found the way through.
           </h2>
           <p>
@@ -267,18 +279,34 @@
             <li><strong>200+ clients</strong> across careers, relationships &amp; life transitions</li>
           </ul>
 
-          <a class="btn btn--primary" href="#book">Let's talk — book a free call</a>
+          <a class="btn btn--gold" href="#book">Let's talk — book a free call</a>
         </div>
       </div>
     </section>
 
     <!-- ============================================================= -->
-    <!-- HOW IT WORKS — 3 simple steps                                 -->
+    <!-- FEATURED TESTIMONIAL BAND (navy)                               -->
+    <!-- ⚠️ PLACEHOLDER testimonial — illustrative, not a real client.  -->
     <!-- ============================================================= -->
-    <section class="process section" id="process" aria-labelledby="process-title">
+    <section class="feature-quote" aria-label="Client testimonial">
+      <div class="container feature-quote__inner reveal">
+        <span class="feature-quote__mark" aria-hidden="true">&#8221;</span>
+        <blockquote class="feature-quote__text">
+          I came in overwhelmed and left with an actual plan. Within three months I
+          finally left the job that was draining me — <em>and started the business
+          I'd talked about for years.</em>
+        </blockquote>
+        <p class="feature-quote__by script-accent script-accent--gold">Jordan M. — Marketing Director → Founder</p>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- HOW IT WORKS                                                   -->
+    <!-- ============================================================= -->
+    <section class="section process" id="process" aria-labelledby="process-title">
       <div class="container">
         <div class="section__head section__head--center reveal">
-          <p class="eyebrow">Simple by design</p>
+          <p class="script-accent">Simple by design</p>
           <h2 class="section__title" id="process-title">How it works</h2>
           <p class="section__intro">Three low-pressure steps from stuck to moving forward.</p>
         </div>
@@ -287,7 +315,6 @@
           <li class="process__step reveal">
             <span class="process__num" aria-hidden="true">01</span>
             <span class="process__icon" aria-hidden="true">
-              <!-- calendar icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/></svg>
             </span>
             <h3 class="process__step-title">Book your free call</h3>
@@ -297,7 +324,6 @@
           <li class="process__step reveal" data-reveal-delay="1">
             <span class="process__num" aria-hidden="true">02</span>
             <span class="process__icon" aria-hidden="true">
-              <!-- map / plan icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>
             </span>
             <h3 class="process__step-title">Build your plan</h3>
@@ -307,7 +333,6 @@
           <li class="process__step reveal" data-reveal-delay="2">
             <span class="process__num" aria-hidden="true">03</span>
             <span class="process__icon" aria-hidden="true">
-              <!-- sunrise / growth icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M5 8l2 2M19 8l-2 2M3 18h18M6 18a6 6 0 0 1 12 0"/></svg>
             </span>
             <h3 class="process__step-title">Transform your life</h3>
@@ -316,25 +341,24 @@
         </ol>
 
         <div class="process__cta reveal">
-          <a class="btn btn--primary btn--lg" href="#book">Book Your Free Discovery Call</a>
+          <a class="btn btn--gold btn--lg" href="#book">Book Your Free Discovery Call</a>
         </div>
       </div>
     </section>
 
     <!-- ============================================================= -->
-    <!-- SERVICES / PACKAGES                                           -->
-    <!-- NOTE: prices are placeholders — set your own.                 -->
+    <!-- SERVICES / PACKAGES                                            -->
+    <!-- NOTE: prices are placeholders — set your own.                  -->
     <!-- ============================================================= -->
-    <section class="services section section--sand" id="services" aria-labelledby="services-title">
+    <section class="section section--blush services" id="services" aria-labelledby="services-title">
       <div class="container">
         <div class="section__head section__head--center reveal">
-          <p class="eyebrow">Ways to work together</p>
+          <p class="script-accent">Ways to work together</p>
           <h2 class="section__title" id="services-title">Coaching built around your goals</h2>
           <p class="section__intro">Every path starts with the same free discovery call, so we can find your best fit together.</p>
         </div>
 
         <div class="services__grid">
-          <!-- Package 1 -->
           <article class="pkg reveal">
             <header class="pkg__head">
               <h3 class="pkg__name">Clarity Session</h3>
@@ -347,10 +371,9 @@
               <li>Personalized action summary</li>
               <li>One week of follow-up support</li>
             </ul>
-            <a class="btn btn--ghost pkg__cta" href="#book">Book a Call</a>
+            <a class="btn btn--outline pkg__cta" href="#book">Book a Call</a>
           </article>
 
-          <!-- Package 2 (featured) -->
           <article class="pkg pkg--featured reveal" data-reveal-delay="1">
             <span class="pkg__badge">Most popular</span>
             <header class="pkg__head">
@@ -364,10 +387,9 @@
               <li>Voice &amp; message support between sessions</li>
               <li>Tools, prompts &amp; accountability</li>
             </ul>
-            <a class="btn btn--primary pkg__cta" href="#book">Book a Call</a>
+            <a class="btn btn--gold pkg__cta" href="#book">Book a Call</a>
           </article>
 
-          <!-- Package 3 -->
           <article class="pkg reveal" data-reveal-delay="2">
             <header class="pkg__head">
               <h3 class="pkg__name">Full Transformation</h3>
@@ -380,7 +402,7 @@
               <li>Priority support &amp; check-ins</li>
               <li>Lifetime access to your resources</li>
             </ul>
-            <a class="btn btn--ghost pkg__cta" href="#book">Book a Call</a>
+            <a class="btn btn--outline pkg__cta" href="#book">Book a Call</a>
           </article>
         </div>
 
@@ -390,37 +412,19 @@
 
     <!-- ============================================================= -->
     <!-- TESTIMONIALS                                                  -->
-    <!-- ⚠️ PLACEHOLDER TESTIMONIALS — these are illustrative examples, -->
-    <!--    NOT real clients. Replace with genuine, permission-granted  -->
-    <!--    quotes before going live.                                   -->
+    <!-- ⚠️ PLACEHOLDER TESTIMONIALS — illustrative examples, NOT real  -->
+    <!--    people. Replace with genuine, permission-granted quotes.    -->
     <!-- ============================================================= -->
-    <section class="testimonials section" id="testimonials" aria-labelledby="testimonials-title">
+    <section class="section testimonials" id="testimonials" aria-labelledby="testimonials-title">
       <div class="container">
         <div class="section__head section__head--center reveal">
-          <p class="eyebrow">Real results</p>
+          <p class="script-accent">Real results</p>
           <h2 class="section__title" id="testimonials-title">What changes when you stop doing it alone</h2>
         </div>
 
         <div class="testimonials__grid">
-          <!-- PLACEHOLDER testimonial 1 -->
           <figure class="quote reveal">
-            <blockquote>
-              "I came in overwhelmed and left with an actual plan. Within three months I finally left the job that was draining me — and started the business I'd talked about for years."
-            </blockquote>
-            <figcaption class="quote__by">
-              <img class="quote__avatar" width="56" height="56" loading="lazy"
-                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=112&q=80"
-                alt="Portrait of Jordan M."
-                onerror="this.onerror=null;this.classList.add('is-fallback');this.removeAttribute('src');" />
-              <span>
-                <strong>Jordan M.</strong>
-                <span class="quote__role">Marketing Director → Founder</span>
-              </span>
-            </figcaption>
-          </figure>
-
-          <!-- PLACEHOLDER testimonial 2 -->
-          <figure class="quote reveal" data-reveal-delay="1">
+            <span class="quote__mark" aria-hidden="true">&#8221;</span>
             <blockquote>
               "Elena helped me quiet the constant self-doubt. For the first time in years I trust my own decisions — and my relationships have completely changed because of it."
             </blockquote>
@@ -429,15 +433,12 @@
                 src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=112&q=80"
                 alt="Portrait of Priya S."
                 onerror="this.onerror=null;this.classList.add('is-fallback');this.removeAttribute('src');" />
-              <span>
-                <strong>Priya S.</strong>
-                <span class="quote__role">Teacher &amp; new mom</span>
-              </span>
+              <span><strong>Priya S.</strong><span class="quote__role">Teacher &amp; new mom</span></span>
             </figcaption>
           </figure>
 
-          <!-- PLACEHOLDER testimonial 3 -->
-          <figure class="quote reveal" data-reveal-delay="2">
+          <figure class="quote reveal" data-reveal-delay="1">
+            <span class="quote__mark" aria-hidden="true">&#8221;</span>
             <blockquote>
               "I was 'fine' but stuck for years. Six months in, I moved cities, restarted dating, and feel genuinely excited about my life again. Best money I've ever spent on myself."
             </blockquote>
@@ -446,28 +447,55 @@
                 src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=112&q=80"
                 alt="Portrait of Daniel R."
                 onerror="this.onerror=null;this.classList.add('is-fallback');this.removeAttribute('src');" />
-              <span>
-                <strong>Daniel R.</strong>
-                <span class="quote__role">Software Engineer</span>
-              </span>
+              <span><strong>Daniel R.</strong><span class="quote__role">Software Engineer</span></span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote reveal" data-reveal-delay="2">
+            <span class="quote__mark" aria-hidden="true">&#8221;</span>
+            <blockquote>
+              "I came in overwhelmed and left with an actual plan. Within three months I finally left the job that was draining me — and started the business I'd talked about for years."
+            </blockquote>
+            <figcaption class="quote__by">
+              <img class="quote__avatar" width="56" height="56" loading="lazy"
+                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=112&q=80"
+                alt="Portrait of Jordan M."
+                onerror="this.onerror=null;this.classList.add('is-fallback');this.removeAttribute('src');" />
+              <span><strong>Jordan M.</strong><span class="quote__role">Marketing Director → Founder</span></span>
             </figcaption>
           </figure>
         </div>
 
         <div class="testimonials__cta reveal">
-          <a class="btn btn--primary btn--lg" href="#book">Book Your Free Discovery Call</a>
+          <a class="btn btn--gold btn--lg" href="#book">Book Your Free Discovery Call</a>
           <p class="hero__micro">Your story could be the next one here.</p>
         </div>
       </div>
     </section>
 
     <!-- ============================================================= -->
-    <!-- FAQ — objection handling accordion                            -->
+    <!-- FULL-BLEED PHOTO QUOTE BAND                                    -->
+    <!-- Uses a line of our own promise copy over a warm photo.         -->
     <!-- ============================================================= -->
-    <section class="faq section section--sand" id="faq" aria-labelledby="faq-title">
+    <section class="photo-quote" aria-label="A note from Elena">
+      <div class="photo-quote__overlay"></div>
+      <!-- TODO: replace the background image (see .photo-quote in styles.css) -->
+      <div class="container photo-quote__inner reveal">
+        <p class="photo-quote__text">
+          You don't need a whole new life. You need clarity, a little support, and
+          the courage to take the next honest step.
+        </p>
+        <p class="photo-quote__by script-accent script-accent--gold">— Elena</p>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- FAQ                                                            -->
+    <!-- ============================================================= -->
+    <section class="section section--blush faq" id="faq" aria-labelledby="faq-title">
       <div class="container faq__inner">
         <div class="section__head section__head--center reveal">
-          <p class="eyebrow">Before you book</p>
+          <p class="script-accent">Before you book</p>
           <h2 class="section__title" id="faq-title">Questions people ask me</h2>
         </div>
 
@@ -548,16 +576,16 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- FINAL CTA BAND                                                 -->
+    <!-- FINAL CTA BAND (navy)                                          -->
     <!-- ============================================================= -->
     <section class="cta-band" id="book" aria-labelledby="cta-title">
       <div class="container cta-band__inner reveal">
-        <p class="eyebrow eyebrow--light">Your next chapter starts with a conversation</p>
+        <p class="script-accent script-accent--gold script-accent--xl">Your next chapter</p>
         <h2 class="cta-band__title" id="cta-title">Ready to build a life that finally feels like yours?</h2>
         <p class="cta-band__sub">Book your free 30-minute discovery call. No pressure, no pitch — just a real conversation about what's possible for you.</p>
         <!-- TODO: replace href below with your Calendly / GHL calendar URL.
              If you embed a scheduler here, drop the <iframe> right under this button. -->
-        <a class="btn btn--light btn--lg" href="#book">Book Your Free Discovery Call</a>
+        <a class="btn btn--gold btn--lg" href="#book">Book Your Free Discovery Call</a>
         <p class="cta-band__micro">Prefer email? <a href="mailto:hello@elenahart.co">hello@elenahart.co</a></p>
       </div>
     </section>
@@ -569,40 +597,46 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <a class="nav__brand" href="#top" aria-label="Elena Hart — home">
-          <span class="nav__mark" aria-hidden="true">EH</span>
-          <span class="nav__name">Elena&nbsp;Hart</span>
+        <a class="brand" href="#top" aria-label="Elena Hart — home">
+          <span class="brand__name">Elena Hart</span>
+          <span class="brand__tag">Life &amp; Mindset Coach</span>
         </a>
-        <p class="footer__tag">Life &amp; mindset coaching to help you get unstuck and build a life that feels like yours.</p>
+        <p class="footer__tag">Coaching to help you get unstuck and build a life that feels like yours.</p>
       </div>
 
-      <nav class="footer__nav" aria-label="Footer">
-        <h4>Explore</h4>
+      <div class="footer__col">
+        <h4>Follow me</h4>
+        <ul class="footer__social" aria-label="Social links">
+          <!-- TODO: replace # with your real social URLs -->
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+        <h4 class="footer__col-h2">Quick contact</h4>
+        <a href="mailto:hello@elenahart.co">hello@elenahart.co</a>
+      </div>
+
+      <nav class="footer__col" aria-label="Footer menu">
+        <h4>Menu</h4>
         <a href="#about">About</a>
         <a href="#process">How it works</a>
         <a href="#services">Services</a>
+        <a href="#testimonials">Results</a>
         <a href="#faq">FAQ</a>
       </nav>
 
-      <div class="footer__contact">
-        <h4>Get in touch</h4>
-        <a href="mailto:hello@elenahart.co">hello@elenahart.co</a>
-        <ul class="footer__social" aria-label="Social links">
-          <!-- TODO: replace # with your real social URLs -->
-          <li><a href="#" aria-label="Instagram">Instagram</a></li>
-          <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
-          <li><a href="#" aria-label="YouTube">YouTube</a></li>
-        </ul>
-        <a class="btn btn--primary btn--sm footer__cta" href="#book">Book a Call</a>
-      </div>
+      <nav class="footer__col" aria-label="Legal">
+        <h4>Legal</h4>
+        <!-- TODO: link real privacy/terms pages -->
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a class="btn btn--gold btn--sm footer__cta" href="#book">Book a Call</a>
+      </nav>
     </div>
 
     <div class="container footer__bottom">
       <p>&copy; <span data-year>2026</span> Elena Hart Coaching. All rights reserved.</p>
-      <p class="footer__legal">
-        <a href="#">Privacy</a> · <a href="#">Terms</a>
-        <!-- TODO: link real privacy/terms pages -->
-      </p>
+      <p class="footer__legal">Made with care · Life &amp; Mindset Coaching</p>
     </div>
   </footer>
 

@@ -8,15 +8,20 @@ plain HTML, CSS, and vanilla JS — no frameworks, no build step.
 > Swap the name, copy, photos, prices, and booking link for the real coach.
 > All placeholders are marked with `TODO` comments in the code.
 
+**Design direction:** an elegant editorial coaching look — deep **navy**, warm
+**gold**, soft **blush**, and **cream** — with a **script** flourish (Parisienne),
+a **serif** display face (Noto Serif Display), and a clean **sans** for body
+(Montserrat). Full-width navy statement bands, gold pill CTAs, and offset blush
+photo frames give it a premium, feminine-warm feel.
+
 ---
 
 ## ✨ Highlights
 
 - **Conversion-first layout** — Promise → Proof → Process → Path, with the
-  discovery-call CTA repeated after the hero, after testimonials, and in the footer.
+  discovery-call CTA repeated in the top bar, hero, mid-page, testimonials, final band, and footer.
 - **Fully responsive & accessible** — semantic HTML, skip link, keyboard-navigable
-  nav + FAQ accordion, visible focus states, WCAG-AA contrast, `alt` text, and
-  `prefers-reduced-motion` support.
+  nav + FAQ accordion, visible focus states, `alt` text, and `prefers-reduced-motion` support.
 - **Tasteful micro-interactions** — sticky nav, smooth scroll, subtle scroll-reveal,
   hover states — all vanilla JS/CSS, no libraries.
 - **SEO ready** — title, meta description, Open Graph + Twitter cards, favicon
@@ -32,27 +37,22 @@ All colors live as CSS variables at the top of **`styles.css`** (`:root`) — an
 for the GHL version, at the top of the `<style>` block in **`embed.html`**
 (scoped to `.ehc-root`). Edit once to re-skin the whole site.
 
-| Token          | Hex        | Role                                   |
-| -------------- | ---------- | -------------------------------------- |
-| `--cream`      | `#FAF6F0`  | Page background (soft warm off-white)  |
-| `--sand`       | `#F1E9DD`  | Alternating section background         |
-| `--sand-2`     | `#E9DECE`  | Subtle card borders / dividers         |
-| `--ink`        | `#2A2521`  | Headings & primary text (espresso)     |
-| `--muted`      | `#6E645B`  | Secondary text                         |
-| `--clay`       | `#C25E3C`  | **The accent** — CTAs, links, highlights |
-| `--clay-600`   | `#A94E2F`  | Accent hover / pressed                 |
-| `--clay-tint`  | `#F3E0D6`  | Faint accent wash                      |
-| `--line`       | `#E4D8C9`  | Hairline borders                       |
+| Token          | Hex        | Role                                     |
+| -------------- | ---------- | ---------------------------------------- |
+| `--navy`       | `#060644`  | Statement bands, footer, headings        |
+| `--gold`       | `#BC9C22`  | **The accent** — CTAs, script, highlights |
+| `--gold-600`   | `#A3861A`  | Gold hover / pressed                     |
+| `--blush`      | `#DCBFBB`  | Photo frames, top bar, badges            |
+| `--blush-bg`   | `#F3E7E3`  | Soft blush section background            |
+| `--cream`      | `#F8F4F3`  | Page canvas / section background         |
+| `--ink`        | `#1C1C33`  | Body text (soft navy-charcoal)           |
+| `--muted`      | `#5C5C72`  | Secondary text                           |
+| `--line`       | `#E7DCD6`  | Hairline borders                         |
 
-**Why this direction:** a warm, premium, calming feel that fits life/mindset
-coaching — soft neutrals to feel safe and grounded, with a single confident
-terracotta accent to draw the eye straight to "Book a Call." Terracotta reads as
-warm and human (not corporate blue, not salesy red), which suits a trust-based,
-personal service.
-
-**Fonts:** [Fraunces](https://fonts.google.com/specimen/Fraunces) (elegant serif
-headings) + [Inter](https://fonts.google.com/specimen/Inter) (clean modern body),
-loaded from Google Fonts.
+**Fonts** (Google Fonts):
+[Parisienne](https://fonts.google.com/specimen/Parisienne) (script accents) ·
+[Noto Serif Display](https://fonts.google.com/specimen/Noto+Serif+Display) (headlines) ·
+[Montserrat](https://fonts.google.com/specimen/Montserrat) (body + uppercase labels).
 
 ---
 
@@ -70,6 +70,11 @@ life-coach-website/
 └── README.md
 ```
 
+Page sections, in order: **top announcement bar → sticky nav → hero → navy
+statement band (+ credentials) → pain→promise → about → navy featured-testimonial
+band → how it works → services → testimonials → full-bleed photo quote → FAQ →
+final navy CTA band → footer.**
+
 ---
 
 ## 🔧 Things to customize (search the code for `TODO`)
@@ -78,10 +83,10 @@ life-coach-website/
    Replace with your **Calendly / GHL calendar URL**. In `embed.html` the anchor is
    `#ehc-book`; search for `TODO-BOOKING`.
 2. **Coach details** — name, bio, email (`hello@elenahart.co`), social links.
-3. **Photos** — hero + about headshots, testimonial avatars, OG share image
-   (placeholders use Unsplash; see `assets/README.md`).
-4. **Testimonials** — ⚠️ the three quotes are **clearly-labeled placeholders**,
-   not real people. Replace with genuine, permission-granted client results before launch.
+3. **Photos** — hero + about headshots, testimonial avatars, the full-bleed photo-quote
+   background, and OG share image (placeholders use Unsplash; see `assets/README.md`).
+4. **Testimonials** — ⚠️ the quotes are **clearly-labeled placeholders**, not real
+   people. Replace with genuine, permission-granted client results before launch.
 5. **Prices & packages** — the three package prices are examples.
 6. **Domain** — update `elenahart.co` in the `<link rel="canonical">`, OG tags, and JSON-LD.
 
@@ -92,7 +97,6 @@ life-coach-website/
 It's a static site — just open `index.html` in a browser. Or serve it:
 
 ```bash
-# Node (no install needed)
 npx serve .
 # → http://localhost:3000
 ```
@@ -104,20 +108,14 @@ npx serve .
 This repo includes **`render.yaml`**, a Blueprint that deploys the repo root as a
 static site (no build command).
 
-**Option A — Dashboard (recommended, ~2 min):**
-
-1. Push this repo to GitHub (see below).
+1. Push this repo to GitHub (already done if you're reading this on GitHub).
 2. Go to <https://dashboard.render.com> → **New +** → **Static Site**.
-3. Connect your GitHub account and pick the **`life-coach-website`** repo.
-4. Settings (Render auto-detects most from `render.yaml`):
-   - **Build Command:** *(leave empty)*
-   - **Publish Directory:** `.`
-5. Click **Create Static Site**. Render builds and gives you a live URL like
-   `https://life-coach-website.onrender.com`.
+3. Connect GitHub and pick the **`life-coach-website`** repo.
+4. Settings (auto-detected from `render.yaml`): **Build Command** empty, **Publish Directory** `.`.
+5. Click **Create Static Site** → you get a URL like `https://life-coach-website.onrender.com`.
 6. Every future `git push` auto-deploys.
 
-**Option B — Blueprint:** New + → **Blueprint** → pick the repo → Render reads
-`render.yaml` and provisions it automatically.
+*(Alternative: New + → **Blueprint** → pick the repo → Render reads `render.yaml`.)*
 
 ---
 
@@ -133,9 +131,9 @@ Use **`embed.html`** (not `index.html`) for GHL:
 
 **Why it's safe:** everything is wrapped in `<div class="ehc-root">` and every CSS
 rule is namespaced under `.ehc-root`, so the styles can't leak into the rest of
-your funnel. All JS runs in an IIFE scoped to that wrapper. Fonts load via a
-self-contained `@import`, and there's no `<html>/<head>/<body>` wrapper (GHL
-provides those).
+your funnel (verified: the scoped reset does not touch the funnel's `body`). All JS
+runs in an IIFE scoped to that wrapper. Fonts load via a self-contained `@import`,
+and there's no `<html>/<head>/<body>` wrapper (GHL provides those).
 
 ---
 
@@ -145,7 +143,6 @@ provides those).
 - FAQ accordion uses real `<button>`s with `aria-expanded` / `aria-controls`;
   fully keyboard operable, Escape closes the mobile menu.
 - Focus-visible outlines everywhere; motion is disabled for users who request it.
-- Color pairings target WCAG-AA contrast.
 
 ---
 
