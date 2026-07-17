@@ -138,19 +138,18 @@
     .ehc-mobile-links .ehc-btn { margin-top: .7rem; color: var(--ehc-white); }
     @media (min-width: 1000px) { .ehc-nav-links, .ehc-nav-right { display: flex; } .ehc-toggle { display: none; } }
 
-    /* hero */
-    .ehc-hero { position: relative; padding-block: clamp(2.5rem,5vw,4.5rem) clamp(3.5rem,7vw,6rem); background: radial-gradient(48% 45% at 78% 12%, rgba(188,156,34,.16), transparent 60%), radial-gradient(50% 55% at 6% 90%, rgba(220,191,187,.4), transparent 60%), var(--ehc-cream); }
-    .ehc-hero-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem,5vw,4rem); align-items: center; }
-    .ehc-hero-media { position: relative; justify-self: center; width: 100%; max-width: 440px; }
-    .ehc-hero-frame { position: relative; border-radius: 240px 240px var(--ehc-radius) var(--ehc-radius); overflow: hidden; box-shadow: var(--ehc-shadow-lg); border: 7px solid var(--ehc-white); aspect-ratio: 9/11; }
-    .ehc-hero-media::before { content: ""; position: absolute; inset: auto -14px -14px 24px; height: 78%; background: var(--ehc-blush); border-radius: 200px 200px var(--ehc-radius) var(--ehc-radius); z-index: -1; }
-    .ehc-hero-photo { width: 100%; height: 100%; object-fit: cover; }
+    /* hero — full-bleed bg image + cream scrim */
+    .ehc-hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: min(86vh, 780px); padding-block: clamp(3rem,8vw,6rem); }
+    /* Set background-image on .ehc-hero-bg to your Higgsfield hero when ready. */
+    .ehc-hero-bg { position: absolute; inset: 0; z-index: 0; background-color: var(--ehc-cream); background-repeat: no-repeat; background-position: center right; background-size: cover; background-image: radial-gradient(42% 52% at 84% 22%, rgba(188,156,34,.30), transparent 62%), radial-gradient(46% 50% at 98% 74%, rgba(220,191,187,.60), transparent 60%), radial-gradient(34% 42% at 66% 98%, rgba(188,156,34,.16), transparent 60%), linear-gradient(120deg, var(--ehc-cream) 0%, #FBF6EF 55%, #F3E7E3 100%); }
+    .ehc-hero-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, rgba(248,244,243,.96) 0%, rgba(248,244,243,.90) 34%, rgba(248,244,243,.55) 62%, rgba(248,244,243,.12) 100%); }
+    .ehc-hero-inner { position: relative; z-index: 2; max-width: 640px; }
     .ehc-hero-title { font-size: clamp(2.3rem,1.3rem + 4.4vw,4rem); color: var(--ehc-navy); margin-bottom: 1.2rem; }
     .ehc-hero-title .ehc-script--xl { margin-top: .15rem; }
     .ehc-hero-sub { font-size: clamp(1.02rem,.96rem + .4vw,1.2rem); color: var(--ehc-muted); max-width: 34rem; margin-bottom: 1.8rem; }
     .ehc-hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1rem; }
     .ehc-micro { font-size: .85rem; color: var(--ehc-muted); margin: 0; }
-    @media (min-width: 880px) { .ehc-hero-grid { grid-template-columns: .85fr 1.15fr; } .ehc-hero-media { justify-self: start; } }
+    @media (max-width: 760px) { .ehc-hero { min-height: auto; } .ehc-hero-scrim { background: linear-gradient(180deg, rgba(248,244,243,.82) 0%, rgba(248,244,243,.92) 55%, rgba(248,244,243,.97) 100%); } }
 
     /* navy band */
     .ehc-band { background: var(--ehc-navy); color: var(--ehc-white); text-align: center; padding-block: clamp(3rem,6vw,5rem); }
@@ -346,24 +345,19 @@
 
   <!-- HERO -->
   <section class="ehc-hero" aria-labelledby="ehc-hero-title">
-    <div class="ehc-container ehc-hero-grid">
-      <div class="ehc-hero-media ehc-reveal">
-        <div class="ehc-hero-frame">
-          <!-- TODO: replace with a real headshot of the coach -->
-          <img class="ehc-hero-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80" alt="Elena Hart, life and mindset coach, smiling warmly" width="900" height="1100" loading="eager" onerror="this.onerror=null;this.classList.add('ehc-is-fallback');this.removeAttribute('src');" />
-        </div>
+    <!-- HERO BACKGROUND: set background-image on .ehc-hero-bg to your Higgsfield hero when ready -->
+    <div class="ehc-hero-bg" aria-hidden="true"></div>
+    <div class="ehc-hero-scrim" aria-hidden="true"></div>
+    <div class="ehc-container ehc-hero-inner ehc-reveal">
+      <p class="ehc-script">Life &amp; mindset coaching</p>
+      <h1 class="ehc-hero-title" id="ehc-hero-title">Get unstuck and build a life that <span class="ehc-script ehc-script--xl">finally feels like yours.</span></h1>
+      <p class="ehc-hero-sub">I help thoughtful, driven people quiet the self-doubt, find real clarity, and take the next confident step — starting with one honest conversation.</p>
+      <div class="ehc-hero-actions">
+        <!-- TODO-BOOKING -->
+        <a class="ehc-btn ehc-btn--gold ehc-btn--stack" href="#ehc-book"><span class="ehc-btn__main">Book Your Free Discovery Call</span><span class="ehc-btn__sub">30 min · no pressure, no pitch</span></a>
+        <a class="ehc-btn ehc-btn--outline ehc-btn--stack" href="#ehc-process"><span class="ehc-btn__main">New here?</span><span class="ehc-btn__sub">See how it works</span></a>
       </div>
-      <div class="ehc-hero-copy ehc-reveal" data-d="1">
-        <p class="ehc-script">Life &amp; mindset coaching</p>
-        <h1 class="ehc-hero-title" id="ehc-hero-title">Get unstuck and build a life that <span class="ehc-script ehc-script--xl">finally feels like yours.</span></h1>
-        <p class="ehc-hero-sub">I help thoughtful, driven people quiet the self-doubt, find real clarity, and take the next confident step — starting with one honest conversation.</p>
-        <div class="ehc-hero-actions">
-          <!-- TODO-BOOKING -->
-          <a class="ehc-btn ehc-btn--gold ehc-btn--stack" href="#ehc-book"><span class="ehc-btn__main">Book Your Free Discovery Call</span><span class="ehc-btn__sub">30 min · no pressure, no pitch</span></a>
-          <a class="ehc-btn ehc-btn--outline ehc-btn--stack" href="#ehc-process"><span class="ehc-btn__main">New here?</span><span class="ehc-btn__sub">See how it works</span></a>
-        </div>
-        <p class="ehc-micro">Free 30-minute call · one honest conversation about you.</p>
-      </div>
+      <p class="ehc-micro">Free 30-minute call · one honest conversation about you.</p>
     </div>
   </section>
 

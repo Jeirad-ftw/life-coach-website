@@ -293,48 +293,59 @@ em { font-style: italic; }
 }
 
 /* =================================================================
-   HERO
+   HERO — full-bleed background image + cream scrim for legibility
    ================================================================= */
 .hero {
-  position: relative;
-  padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(3.5rem, 7vw, 6rem);
-  background:
-    radial-gradient(48% 45% at 78% 12%, rgba(188, 156, 34, 0.16), transparent 60%),
-    radial-gradient(50% 55% at 6% 90%, rgba(220, 191, 187, 0.4), transparent 60%),
-    var(--cream);
-}
-.hero__grid {
-  display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 5vw, 4rem);
-  align-items: center;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  min-height: min(86vh, 780px);
+  padding-block: clamp(3rem, 8vw, 6rem);
 }
 
-/* Coach photo with offset blush frame */
-.hero__media { position: relative; justify-self: center; width: 100%; max-width: 440px; }
-.hero__frame {
-  position: relative; border-radius: 240px 240px var(--radius) var(--radius);
-  overflow: hidden; box-shadow: var(--shadow-lg);
-  border: 7px solid var(--white); aspect-ratio: 9 / 11;
+/* ▼▼▼ THE HERO BACKGROUND ▼▼▼
+   Drop your Higgsfield-generated hero here — set background-image to your file:
+     .hero__bg { background-image: url("assets/hero.jpg"); }
+   Until then, this warm "soft morning light" gradient stands in tastefully. */
+.hero__bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-color: var(--cream);
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: cover;
+  background-image:
+    radial-gradient(42% 52% at 84% 22%, rgba(188, 156, 34, 0.30), transparent 62%),
+    radial-gradient(46% 50% at 98% 74%, rgba(220, 191, 187, 0.60), transparent 60%),
+    radial-gradient(34% 42% at 66% 98%, rgba(188, 156, 34, 0.16), transparent 60%),
+    linear-gradient(120deg, var(--cream) 0%, #FBF6EF 55%, #F3E7E3 100%);
 }
-.hero__media::before {
-  content: ""; position: absolute; inset: auto -14px -14px 24px; height: 78%;
-  background: var(--blush); border-radius: 200px 200px var(--radius) var(--radius);
-  z-index: -1;
-}
-.hero__photo { width: 100%; height: 100%; object-fit: cover; }
 
+/* Cream scrim keeps navy text crisp over any image */
+.hero__scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(100deg,
+    rgba(248, 244, 243, 0.96) 0%,
+    rgba(248, 244, 243, 0.90) 34%,
+    rgba(248, 244, 243, 0.55) 62%,
+    rgba(248, 244, 243, 0.12) 100%);
+}
+
+.hero__inner { position: relative; z-index: 2; max-width: 640px; }
 .hero__script { margin-bottom: 0.2rem; }
-.hero__title {
-  font-size: clamp(2.3rem, 1.3rem + 4.4vw, 4rem);
-  color: var(--navy); margin-bottom: 1.2rem;
-}
+.hero__title { font-size: clamp(2.3rem, 1.3rem + 4.4vw, 4rem); color: var(--navy); margin-bottom: 1.2rem; }
 .hero__title .script-accent--xl { margin-top: 0.15rem; }
 .hero__sub { font-size: clamp(1.02rem, 0.96rem + 0.4vw, 1.2rem); color: var(--muted); max-width: 34rem; margin-bottom: 1.8rem; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-bottom: 1rem; }
 .hero__micro { font-size: 0.85rem; color: var(--muted); margin: 0; letter-spacing: 0.02em; }
 
-@media (min-width: 880px) {
-  .hero__grid { grid-template-columns: 0.85fr 1.15fr; }
-  .hero__media { justify-self: start; }
+/* On small screens, wash the whole background so text stays readable */
+@media (max-width: 760px) {
+  .hero { min-height: auto; }
+  .hero__scrim {
+    background: linear-gradient(180deg,
+      rgba(248, 244, 243, 0.82) 0%,
+      rgba(248, 244, 243, 0.92) 55%,
+      rgba(248, 244, 243, 0.97) 100%);
+  }
 }
 
 /* =================================================================

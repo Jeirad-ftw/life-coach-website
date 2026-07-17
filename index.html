@@ -138,41 +138,35 @@
     <!-- HERO                                                          -->
     <!-- ============================================================= -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero__grid">
-        <div class="hero__media reveal">
-          <div class="hero__frame">
-            <!-- TODO: replace with a real, warm headshot of the coach (approx 900x1100) -->
-            <img class="hero__photo"
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80"
-              alt="Elena Hart, life and mindset coach, smiling warmly"
-              width="900" height="1100" loading="eager" fetchpriority="high"
-              onerror="this.onerror=null;this.classList.add('is-fallback');this.removeAttribute('src');" />
-          </div>
-        </div>
+      <!-- HERO BACKGROUND:
+           Swap the CSS background-image on .hero__bg (styles.css) for your
+           Higgsfield-generated hero when ready. A warm "soft morning light"
+           gradient stands in until then. -->
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__scrim" aria-hidden="true"></div>
 
-        <div class="hero__copy reveal" data-reveal-delay="1">
-          <p class="script-accent hero__script">Life &amp; mindset coaching</p>
-          <h1 class="hero__title" id="hero-title">
-            Get unstuck and build a life that
-            <span class="script-accent script-accent--xl">finally feels like yours.</span>
-          </h1>
-          <p class="hero__sub">
-            I help thoughtful, driven people quiet the self-doubt, find real clarity,
-            and take the next confident step — starting with one honest conversation.
-          </p>
-          <div class="hero__actions">
-            <!-- TODO: replace #book with your Calendly / GHL calendar URL -->
-            <a class="btn btn--gold btn--stack" href="#book">
-              <span class="btn__main">Book Your Free Discovery Call</span>
-              <span class="btn__sub">30 min · no pressure, no pitch</span>
-            </a>
-            <a class="btn btn--outline btn--stack" href="#process">
-              <span class="btn__main">New here?</span>
-              <span class="btn__sub">See how it works</span>
-            </a>
-          </div>
-          <p class="hero__micro">Free 30-minute call · one honest conversation about you.</p>
+      <div class="container hero__inner reveal">
+        <p class="script-accent hero__script">Life &amp; mindset coaching</p>
+        <h1 class="hero__title" id="hero-title">
+          Get unstuck and build a life that
+          <span class="script-accent script-accent--xl">finally feels like yours.</span>
+        </h1>
+        <p class="hero__sub">
+          I help thoughtful, driven people quiet the self-doubt, find real clarity,
+          and take the next confident step — starting with one honest conversation.
+        </p>
+        <div class="hero__actions">
+          <!-- TODO: replace #book with your Calendly / GHL calendar URL -->
+          <a class="btn btn--gold btn--stack" href="#book">
+            <span class="btn__main">Book Your Free Discovery Call</span>
+            <span class="btn__sub">30 min · no pressure, no pitch</span>
+          </a>
+          <a class="btn btn--outline btn--stack" href="#process">
+            <span class="btn__main">New here?</span>
+            <span class="btn__sub">See how it works</span>
+          </a>
         </div>
+        <p class="hero__micro">Free 30-minute call · one honest conversation about you.</p>
       </div>
     </section>
 
