@@ -303,9 +303,10 @@ em { font-style: italic; }
 }
 
 /* ▼▼▼ THE HERO BACKGROUND ▼▼▼
-   Drop your Higgsfield-generated hero here — set background-image to your file:
-     .hero__bg { background-image: url("assets/hero.jpg"); }
-   Until then, this warm "soft morning light" gradient stands in tastefully. */
+   Currently a free Unsplash image (assets/hero.jpg — Unsplash License, no
+   attribution required). To use your own Higgsfield-generated hero later,
+   just replace assets/hero.jpg. The warm gradient below is a fallback if the
+   image ever fails to load. */
 .hero__bg {
   position: absolute; inset: 0; z-index: 0;
   background-color: var(--cream);
@@ -313,6 +314,7 @@ em { font-style: italic; }
   background-position: center right;
   background-size: cover;
   background-image:
+    url("assets/hero.jpg"),
     radial-gradient(42% 52% at 84% 22%, rgba(188, 156, 34, 0.30), transparent 62%),
     radial-gradient(46% 50% at 98% 74%, rgba(220, 191, 187, 0.60), transparent 60%),
     radial-gradient(34% 42% at 66% 98%, rgba(188, 156, 34, 0.16), transparent 60%),

@@ -140,8 +140,8 @@
 
     /* hero — full-bleed bg image + cream scrim */
     .ehc-hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: min(86vh, 780px); padding-block: clamp(3rem,8vw,6rem); }
-    /* Set background-image on .ehc-hero-bg to your Higgsfield hero when ready. */
-    .ehc-hero-bg { position: absolute; inset: 0; z-index: 0; background-color: var(--ehc-cream); background-repeat: no-repeat; background-position: center right; background-size: cover; background-image: radial-gradient(42% 52% at 84% 22%, rgba(188,156,34,.30), transparent 62%), radial-gradient(46% 50% at 98% 74%, rgba(220,191,187,.60), transparent 60%), radial-gradient(34% 42% at 66% 98%, rgba(188,156,34,.16), transparent 60%), linear-gradient(120deg, var(--ehc-cream) 0%, #FBF6EF 55%, #F3E7E3 100%); }
+    /* Hero image (free Unsplash, hosted URL so it works inside GHL). Swap this URL for your Higgsfield hero when ready. */
+    .ehc-hero-bg { position: absolute; inset: 0; z-index: 0; background-color: var(--ehc-cream); background-repeat: no-repeat; background-position: center right; background-size: cover; background-image: url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1920&q=80"), radial-gradient(42% 52% at 84% 22%, rgba(188,156,34,.30), transparent 62%), radial-gradient(46% 50% at 98% 74%, rgba(220,191,187,.60), transparent 60%), radial-gradient(34% 42% at 66% 98%, rgba(188,156,34,.16), transparent 60%), linear-gradient(120deg, var(--ehc-cream) 0%, #FBF6EF 55%, #F3E7E3 100%); }
     .ehc-hero-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, rgba(248,244,243,.96) 0%, rgba(248,244,243,.90) 34%, rgba(248,244,243,.55) 62%, rgba(248,244,243,.12) 100%); }
     .ehc-hero-inner { position: relative; z-index: 2; max-width: 640px; }
     .ehc-hero-title { font-size: clamp(2.3rem,1.3rem + 4.4vw,4rem); color: var(--ehc-navy); margin-bottom: 1.2rem; }
